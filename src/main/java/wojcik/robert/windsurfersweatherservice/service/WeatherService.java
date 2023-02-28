@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @RequiredArgsConstructor
 public class WeatherService {
-    private static final String URL = "https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=";
+    private static final String URL = "https://api.weatherbit.io/v2.0/forecast/daily?lat=-3.732714&lon=-38.526997&key=";
     private static final String KEY = "f5f652b875784a5a8f0cc0a7385d9af9";
 
     private RestTemplate restTemplate = new RestTemplate();

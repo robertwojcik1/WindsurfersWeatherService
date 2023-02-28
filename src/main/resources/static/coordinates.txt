@@ -1,0 +1,6 @@
+Jastarnia;lat=54.702839;lon=18.670719
+Barbados;lat=13.096851;lon=-59.614483
+Fortaleza;lat=-3.732714;lon=-38.526997
+Pissouri;lat=34.670231;lon=32.701118
+LeMorne;lat=-20.469570;lon=57.344238
+
