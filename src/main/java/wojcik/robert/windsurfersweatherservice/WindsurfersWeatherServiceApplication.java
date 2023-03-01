@@ -21,5 +21,6 @@ public class WindsurfersWeatherServiceApplication {
         locationList.add(new Location("Fortaleza", "-3.732714", "-38.526997"));
         locationList.add(new Location("Pissouri", "34.670231", "32.701118"));
         locationList.add(new Location("LeMorne", "-20.469570", "57.344238"));
+
     }
 }
