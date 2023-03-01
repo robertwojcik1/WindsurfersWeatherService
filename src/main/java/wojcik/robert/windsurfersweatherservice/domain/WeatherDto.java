@@ -10,4 +10,5 @@ import lombok.ToString;
 public class WeatherDto {
     private float windSpeed;
     private float temperature;
+    private String date;
 }
