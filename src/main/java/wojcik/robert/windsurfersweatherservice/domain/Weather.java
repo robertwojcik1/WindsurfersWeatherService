@@ -7,8 +7,10 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
-public class WeatherDto {
+public class Weather {
     private float windSpeed;
     private float temperature;
     private String date;
+    private String cityName;
+    private float calculatedValue;
 }

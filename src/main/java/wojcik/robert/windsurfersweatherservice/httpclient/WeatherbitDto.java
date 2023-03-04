@@ -9,4 +9,5 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WeatherbitDto {
     private List<WeatherbitDataDto> data;
+    private String city_name;
 }
