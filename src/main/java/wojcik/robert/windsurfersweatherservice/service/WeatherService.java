@@ -6,8 +6,9 @@ import wojcik.robert.windsurfersweatherservice.domain.Location;
 import wojcik.robert.windsurfersweatherservice.domain.Weather;
 import wojcik.robert.windsurfersweatherservice.httpclient.WeatherbitDto;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WeatherService {
@@ -32,15 +33,15 @@ public class WeatherService {
             responcesList.add(response);
         }
 
-        filteredWeatherByDate = filterByDate(responcesList, date);
+        filteredWeatherByDate = filterByDateAndMapToObject(responcesList, date);
 
-        Weather bestWeathersLocation = getBestWeathersLocation(filteredWeatherByDate);
+        Optional<Weather> bestWeathersLocation = getBestWeathersLocation(filteredWeatherByDate);
 
         return bestWeathersLocation.toString();
     }
 
-    private List<Weather> filterByDate(List<WeatherbitDto> responcesList, String date) {
-        List<Weather> filteredResponces = new ArrayList<>();
+    private List<Weather> filterByDateAndMapToObject(List<WeatherbitDto> responcesList, String date) {
+        List<Weather> filteredObjects = new ArrayList<>();
 
         for (int i = 0; i < responcesList.size(); i++) {
             for (int j = 0; j < responcesList.get(i).getData().size(); j++) {
@@ -52,14 +53,14 @@ public class WeatherService {
                             .date(responcesList.get(i).getData().get(j).getValid_date())
                             .cityName(responcesList.get(i).getCity_name())
                             .build();
-                    filteredResponces.add(weather);
+                    filteredObjects.add(weather);
                 }
             }
         }
-        return filteredResponces;
+        return filteredObjects;
     }
 
-    private Weather getBestWeathersLocation(List<Weather> filteredWeatherByDate) {
+    private Optional<Weather> getBestWeathersLocation(List<Weather> filteredWeatherByDate) {
 
         List<Weather> filteredByConditions = filteredWeatherByDate.stream()
                 .filter(weather -> weather.getWindSpeed() >= 5 && weather.getWindSpeed() <= 18)
@@ -70,12 +71,13 @@ public class WeatherService {
                 .forEach(weather -> {
                     weather.setCalculatedValue(((weather.getWindSpeed() * 3)) + weather.getTemperature());
                 });
+
         List<Weather> bestLocation = filteredByConditions.stream()
                 .sorted((w1, w2) -> (int) (w2.getCalculatedValue() - w1.getCalculatedValue()))
                 .limit(1L)
                 .toList();
 
-        return bestLocation.get(0);
+        return Optional.ofNullable(bestLocation.get(0));
     }
 
     public WeatherbitDto getWeatherForLocation(String latitude, String longitude) {

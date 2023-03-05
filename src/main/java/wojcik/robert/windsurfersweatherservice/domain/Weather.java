@@ -1,6 +1,8 @@
 package wojcik.robert.windsurfersweatherservice.domain;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @Getter
@@ -14,9 +16,9 @@ public class Weather {
 
     @Override
     public String toString() {
-        return  "City Name: " + cityName + "\n" +
-                "wind speed: " + windSpeed + "\n" +
-                "temperature: " + temperature + "\n" +
+        return "City Name: " + cityName + ", " +
+                "wind speed: " + windSpeed + ", " +
+                "temperature: " + temperature + ", " +
                 "date: " + date;
     }
 }

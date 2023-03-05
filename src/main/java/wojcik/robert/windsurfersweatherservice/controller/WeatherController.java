@@ -10,7 +10,8 @@ import wojcik.robert.windsurfersweatherservice.service.WeatherService;
 @RequiredArgsConstructor
 public class WeatherController {
     private final WeatherService weatherService;
-@GetMapping("weather/{date}")
+
+    @GetMapping("weather/{date}")
     public String getWeather(@PathVariable String date) {
         return weatherService.getWeather(date);
     }

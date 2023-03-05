@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.ToString;
 
 @AllArgsConstructor
-@Getter@ToString
+@Getter
+@ToString
 public class Location {
     private final String cityName;
     private final String latitude;
